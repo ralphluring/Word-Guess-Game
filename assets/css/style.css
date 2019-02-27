@@ -1,0 +1,43 @@
+.container{
+    display:grid;
+    grid-gap: 40px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 100px 1fr auto;
+}
+
+.header{
+    height: 100px;
+    background-color: aqua;
+    width: 100%;
+    text-align: center;
+}
+
+.game__body{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.wordzone{
+    font-size: 3rem;
+ 
+  
+}
+
+.hangman{
+    min-width: 30%;
+    border:solid 1px black;
+}
+
+.buttonzone{
+    background-color: green;
+    width:100px;
+    text-align: center;
+    padding: 20px;
+    justify-self: center;
+}
+
+.restart{
+    font-size: 1.4rem;
+    color:#fff;
+}

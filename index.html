@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./assets/css/reset.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Hangman</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+          <h1>Hangman Game</h1>
+        </div>
+        <div class="game__body">
+            <div class="wordzone">
+                <div class="word"><span class="word__text"></span></div>
+
+            </div>
+          
+            <div class="hangman">
+                <svg class="svgbody"></svg>
+                <span class="hangman__text"></span>
+          
+            </div>
+        </div>
+        <div class="guesses"><span class="guesses"> </span></div>
+        <div class="missed"><span class="missed"></span></div>
+        <div class="buttonzone"><button class="restart">Restart</button></div>
+    </div>
+<script src="./assets/javascript/game.js"></script>
+</body>
+</html>
