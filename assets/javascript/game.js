@@ -18,6 +18,42 @@ let restart = document.querySelector(".restart");
 let svgElement = document.querySelector(".svgbody");
 let winOrLose = document.querySelector(".winOrLose")
 
+// svg stuff
+let head = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
+head.setAttribute("cx", "150px");
+head.setAttribute("cy", "30px");
+head.setAttribute("rx", "25px");
+head.setAttribute("ry", "25px");
+let arm1 = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+arm1.setAttribute("height", "50px");
+arm1.setAttribute("width", "10px");
+arm1.setAttribute("y","20px");
+arm1.setAttribute("x","100px");
+arm1.setAttribute("transform","rotate(-30 100 40)");
+let arm2 = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+arm2.setAttribute("height", "50px");
+arm2.setAttribute("width", "10px");
+arm2.setAttribute("y","20px");
+arm2.setAttribute("x","100px");
+arm2.setAttribute("transform","rotate(30 170 220)");
+let body = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
+body.setAttribute("cx", "150px");
+body.setAttribute("cy", "100px");
+body.setAttribute("rx", "21px");
+body.setAttribute("ry", "5px");
+let leg1 = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+leg1.setAttribute("height", "70px");
+leg1.setAttribute("width", "15px");
+leg1.setAttribute("y","190px");
+leg1.setAttribute("x","110px");
+leg1.setAttribute("transform","rotate(-30 10 40)");
+let leg2 = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+leg2.setAttribute("height", "70px");
+leg2.setAttribute("width", "15px");
+leg2.setAttribute("y","155px");
+leg2.setAttribute("x","75px");
+leg2.setAttribute("transform","rotate(30 170 220)");
+
 // get random word for choices
 function getRandomWord(){
     randomWord = wordArray[Math.floor(Math.random() * wordArray.length)];
@@ -41,6 +77,7 @@ function initialize(){
     // gets the win or lose text and and sets it to empty string
     winOrLose.innerHTML = "";
     // console.log(winOrLose);
+    svgElement.setAttribute("display","flex");
     render();
 }
 
@@ -64,6 +101,7 @@ function checkWinner(){
     if(compWordArray.join(" ") === userProgress.join(" ")){
         // if the game is won display winner and reset the svg to the blank stage
         gameWon = true;
+        resetSvg();
         winOrLose.textContent = "WINNER";
     }
 }
@@ -78,11 +116,9 @@ function checkLoser(){
 
 // fires when a key is pressed and released
 document.onkeyup = function(e){
-
     numGuesses ++;
     userInput = e.key.toLowerCase();
     let flag = false;
-
     // loop through the comp word
     for(let j = 0; j < compWordArray.length; j++){
         // if key pressed is equal to any letter in word
@@ -98,53 +134,22 @@ document.onkeyup = function(e){
     if(flag === false){
         missedLetters += userInput; 
         bodyPart = bodyArray[singlePart];
-        svgElement.setAttribute("display","flex");
-        let head = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
-        let arm1 = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-        let arm2 = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-        let body = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
-        let leg1 = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-        let leg2 = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-        
-
         if(bodyPart === "head"){  
-            head.setAttribute("cx", "150px");
-            head.setAttribute("cy", "30px");
-            head.setAttribute("rx", "25px");
-            head.setAttribute("ry", "25px");
-            svgElement.append(head);  
-        }else if(bodyPart === "arms"){
-            arm1.setAttribute("height", "50px");
-            arm1.setAttribute("width", "10px");
-            arm1.setAttribute("y","20px");
-            arm1.setAttribute("x","100px");
-            arm1.setAttribute("transform","rotate(-30 100 40)");
-            svgElement.append(arm1);  
-            arm2.setAttribute("height", "50px");
-            arm2.setAttribute("width", "10px");
-            arm2.setAttribute("y","20px");
-            arm2.setAttribute("x","100px");
-            arm2.setAttribute("transform","rotate(30 170 220)");
-            svgElement.append(arm2);
+            head.setAttribute("display","flex");
+            svgElement.appendChild(head);  
+        }else if(bodyPart === "arms"){ 
+            arm1.setAttribute("display","flex");
+            arm2.setAttribute("display","flex");
+            svgElement.appendChild(arm1);  
+            svgElement.appendChild(arm2);
         }else if(bodyPart === "body"){
-            body.setAttribute("cx", "150px");
-            body.setAttribute("cy", "100px");
-            body.setAttribute("rx", "21px");
-            body.setAttribute("ry", "5px");
-            svgElement.append(body);  
+            body.setAttribute("display","flex");
+            svgElement.appendChild(body);  
         }else if(bodyPart === "legs"){
-            leg1.setAttribute("height", "70px");
-            leg1.setAttribute("width", "15px");
-            leg1.setAttribute("y","190px");
-            leg1.setAttribute("x","110px");
-            leg1.setAttribute("transform","rotate(-30 10 40)");
-            svgElement.append(leg1);  
-            leg2.setAttribute("height", "70px");
-            leg2.setAttribute("width", "15px");
-            leg2.setAttribute("y","155px");
-            leg2.setAttribute("x","75px");
-            leg2.setAttribute("transform","rotate(30 170 220)");
-            svgElement.append(leg2);
+            leg1.setAttribute("display","flex");
+            leg2.setAttribute("display","flex");
+            svgElement.appendChild(leg1);  
+            svgElement.appendChild(leg2);
         }
 
         singlePart++;
@@ -154,14 +159,22 @@ document.onkeyup = function(e){
     render();         
 }
 
+function resetSvg(){
+    head.setAttribute("display","none");
+    leg1.setAttribute("display","none");
+    leg2.setAttribute("display","none");
+    arm1.setAttribute("display","none");
+    arm2.setAttribute("display","none");
+    body.setAttribute("display","none");
+}
+
 
 restart.addEventListener("click",function(){
     missedLetters = "";
     numGuesses = 0;
     userProgress = [];
-    svgElement.setAttribute("display","none");
-    flag = false;
     singlePart = 0;
+    resetSvg();
     render();
     initialize();
     
