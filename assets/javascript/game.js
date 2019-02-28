@@ -8,6 +8,8 @@ let numGuesses = 0;
 let missedLetters = "";
 let gameWon = false;
 let singlePart = 0;
+// to stop game play
+let play = true; 
 
 // get dom elements to manipulate
 let wordArea = document.querySelector(".word__text");
@@ -77,7 +79,7 @@ function initialize(){
     // gets the win or lose text and and sets it to empty string
     winOrLose.innerHTML = "";
     // console.log(winOrLose);
-    svgElement.setAttribute("display","flex");
+ 
     render();
 }
 
@@ -100,7 +102,7 @@ function render(){
 function checkWinner(){
     if(compWordArray.join(" ") === userProgress.join(" ")){
         // if the game is won display winner and reset the svg to the blank stage
-        gameWon = true;
+        play = false;
         resetSvg();
         winOrLose.textContent = "WINNER";
     }
@@ -110,13 +112,17 @@ function checkWinner(){
 function checkLoser(){
     if(singlePart === bodyArray.length){
         winOrLose.textContent = "Dead MAN";
+        play = false;
     }
 }
 
 
 // fires when a key is pressed and released
 document.onkeyup = function(e){
-    numGuesses ++;
+    
+    if (play){
+        // this code should play normal
+        numGuesses ++;
     userInput = e.key.toLowerCase();
     let flag = false;
     // loop through the comp word
@@ -156,7 +162,12 @@ document.onkeyup = function(e){
         checkLoser();
     }
 
-    render();         
+    render();        
+    }
+    else{
+        // this code should display that the game is over
+    }
+     
 }
 
 function resetSvg(){
@@ -168,7 +179,6 @@ function resetSvg(){
     body.setAttribute("display","none");
 }
 
-
 restart.addEventListener("click",function(){
     missedLetters = "";
     numGuesses = 0;
@@ -176,8 +186,8 @@ restart.addEventListener("click",function(){
     singlePart = 0;
     resetSvg();
     render();
-    initialize();
-    
+    play = true;
+    initialize();   
 });
 
 initialize();
