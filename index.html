@@ -10,23 +10,33 @@
 </head>
 <body>
     <div class="container">
-        <div class="header">
-          <h1>Hangman Game</h1>
-        </div>
+        <div class="header"><h1>Hangman Game</h1></div>
+
         <div class="game__body">
+
             <div class="wordzone">
                 <div class="word"><span class="word__text"></span></div>
-
             </div>
           
             <div class="hangman">
-                <svg class="svgbody"></svg>
-                <span class="hangman__text"></span>     
+                <div class="hangman__image">
+                     <svg class="svgbody"></svg>
+                     <div class="winlosewrapper"><span class="winOrLose"></span></div>
+                     
+                    </div>    
             </div>
+
         </div>
-        <div class="guesses"><span class="guesses"> </span></div>
-        <div class="missed"><span class="missed"></span></div>
-        <div class="buttonzone"><button class="restart">Restart</button></div>
+
+        <div class="game__footer">
+            <div class="footer__details">
+                <span class="guesses"> </span>
+                <span class="missed"></span>
+            </div>
+            <div class="buttonzone"><button class="restart">Restart</button></div>
+        </div>
+  
+
     </div>
 <script src="./assets/javascript/game.js"></script>
 </body>

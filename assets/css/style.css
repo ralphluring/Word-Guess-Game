@@ -1,12 +1,11 @@
 .container{
     display:grid;
-    grid-gap: 40px;
+    grid-gap: 10px;
     grid-template-columns: 1fr;
     grid-template-rows: 100px 1fr auto;
 }
 
 .header{
-    height: 100px;
     background-color: aqua;
     width: 100%;
     text-align: center;
@@ -20,13 +19,29 @@
 
 .wordzone{
     font-size: 3rem;
- 
-  
+    width: 100%;
+    display: flex;
+    background-color: orange;
+    justify-content: center;
+    align-items: center;
+}
+
+svg{
+    height: 250px;
+}
+
+.svgbody{
+    overflow: unset;
 }
 
 .hangman{
-    min-width: 30%;
+    min-width: 50%;
     border:solid 1px black;
+    display: flex;
+    height: 300px;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 .buttonzone{
@@ -35,9 +50,32 @@
     text-align: center;
     padding: 20px;
     justify-self: center;
+    margin: 0px 50px;
+}
+
+button{
+    background-color: green;
+    border: none;
+}
+
+.game__footer{
+    display: flex;
+    justify-content: center;
 }
 
 .restart{
     font-size: 1.4rem;
     color:#fff;
+}
+
+.footer__details{
+display: flex;
+flex-direction: column;
+justify-content: space-around;
+}
+
+.winlosewrapper{
+    display: flex;
+    justify-content: center;
+
 }
