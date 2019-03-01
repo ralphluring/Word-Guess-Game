@@ -23,12 +23,8 @@ let svgElement = document.querySelector(".svgbody");
 let winOrLose = document.querySelector(".winOrLose")
 
 // svg stuff
-let winnerImg = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
-winnerImg.setAttribute("cx", "150px");
-winnerImg.setAttribute("cx", "150px");
-winnerImg.setAttribute("cy", "40px");
-winnerImg.setAttribute("rx", "25px");
-winnerImg.setAttribute("ry", "55px");
+let winnerImg = document.createElement("p");
+
 
 
 let head = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
@@ -115,7 +111,8 @@ function checkWinner(){
         play = false;
         resetSvg();
         winnerImg.setAttribute("display","flex");
-        svgElement.appendChild(winnerImg);
+        winnerImg.textContent = "(You saved a mans life(press restart to play again)"
+        hangman.appendChild(winnerImg);
         winOrLose.textContent = "WINNER";
         gamesWon++;
         document.querySelector(".gamesWon").textContent = "Games Won: " + gamesWon;
@@ -127,6 +124,8 @@ function checkLoser(){
     if(singlePart === bodyArray.length){
         winOrLose.textContent = "Dead MAN";
         gamesLost++;
+        hangman.appendChild(winnerImg);
+        winnerImg.textContent = "(The man has been hung press restart to redeem yourself)"
         document.querySelector(".gamesLost").textContent = "Games Lost: " + gamesLost;
         play = false;
     }
@@ -203,6 +202,7 @@ restart.addEventListener("click",function(){
     singlePart = 0;
     resetSvg();
     render();
+    winnerImg.textContent = "";
     play = true;
     initialize();   
 });

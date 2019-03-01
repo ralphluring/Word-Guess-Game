@@ -1,14 +1,21 @@
+body{
+    margin:0;
+    font-family: 'ZCOOL QingKe HuangYou', cursive;
+
+}
+
 .container{
     display:grid;
     grid-gap: 10px;
     grid-template-columns: 1fr;
-    grid-template-rows: 100px 1fr auto;
+    grid-template-rows: auto 1fr auto;
 }
 
 .header{
     background-color: aqua;
     width: 100%;
     text-align: center;
+    font-size: 2rem;
 }
 
 .game__body{
@@ -24,6 +31,16 @@
     background-color: orange;
     justify-content: center;
     align-items: center;
+}
+
+.gamesWonAndLost{
+    display: flex;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+.gamesWonAndLost span{
+padding:0px 40px;
 }
 
 svg{
@@ -80,3 +97,8 @@ justify-content: space-around;
     font-size: 2rem;
 
 }
+
+/* .hangman svg{
+    background-image: url("../images/stage.svg");
+    background-repeat: no-repeat;
+} */

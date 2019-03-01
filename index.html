@@ -4,13 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=ZCOOL+QingKe+HuangYou" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/reset.css">
     <link rel="stylesheet" href="./assets/css/style.css">
+    
     <title>Hangman</title>
 </head>
 <body>
     <div class="container">
         <div class="header"><h1>Hangman Game</h1></div>
+
+        <div class="gamesWonAndLost">
+                <span class="gamesWon"></span>
+                <span class="gamesLost"></span>
+        </div>
 
         <div class="game__body">
 
@@ -19,6 +26,7 @@
             </div>
           
             <div class="hangman">
+                
                 <div class="hangman__image">
                      <svg class="svgbody"></svg>
                      <div class="winlosewrapper"><span class="winOrLose"></span></div>
@@ -32,8 +40,7 @@
             <div class="footer__details">
                 <span class="guesses"> </span>
                 <span class="missed"></span>
-                <span class="gamesWon"></span>
-                <span class="gamesLost"></span>
+              
             </div>
             <div class="buttonzone"><button class="restart">Restart</button></div>
         </div>
