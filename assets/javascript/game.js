@@ -8,6 +8,8 @@ let numGuesses = 0;
 let missedLetters = "";
 let gameWon = false;
 let singlePart = 0;
+let gamesWon = 0;
+let gamesLost = 0;
 // to stop game play
 let play = true; 
 
@@ -21,6 +23,14 @@ let svgElement = document.querySelector(".svgbody");
 let winOrLose = document.querySelector(".winOrLose")
 
 // svg stuff
+let winnerImg = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
+winnerImg.setAttribute("cx", "150px");
+winnerImg.setAttribute("cx", "150px");
+winnerImg.setAttribute("cy", "40px");
+winnerImg.setAttribute("rx", "25px");
+winnerImg.setAttribute("ry", "55px");
+
+
 let head = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
 head.setAttribute("cx", "150px");
 head.setAttribute("cy", "30px");
@@ -104,7 +114,11 @@ function checkWinner(){
         // if the game is won display winner and reset the svg to the blank stage
         play = false;
         resetSvg();
+        winnerImg.setAttribute("display","flex");
+        svgElement.appendChild(winnerImg);
         winOrLose.textContent = "WINNER";
+        gamesWon++;
+        document.querySelector(".gamesWon").textContent = "Games Won: " + gamesWon;
     }
 }
 
@@ -112,6 +126,8 @@ function checkWinner(){
 function checkLoser(){
     if(singlePart === bodyArray.length){
         winOrLose.textContent = "Dead MAN";
+        gamesLost++;
+        document.querySelector(".gamesLost").textContent = "Games Lost: " + gamesLost;
         play = false;
     }
 }
@@ -119,7 +135,7 @@ function checkLoser(){
 
 // fires when a key is pressed and released
 document.onkeyup = function(e){
-    
+
     if (play){
         // this code should play normal
         numGuesses ++;
@@ -177,6 +193,7 @@ function resetSvg(){
     arm1.setAttribute("display","none");
     arm2.setAttribute("display","none");
     body.setAttribute("display","none");
+    winnerImg.setAttribute("display","none");
 }
 
 restart.addEventListener("click",function(){
